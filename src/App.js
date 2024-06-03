@@ -4,9 +4,11 @@ import { Footer, Navbar } from "./components";
 
 const App = () => {
   return (
-    <div>
+    <div className="flex min-h-screen flex-col">
       <Navbar />
-      <Outlet />
+      <div className="flex-grow">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );
