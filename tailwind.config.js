@@ -1,8 +1,14 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+import defaultTheme from "tailwindcss/defaultTheme";
+export default {
+  content: ["./src/**/*.{html,js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Pacifico: ['"Pacifico"', ...defaultTheme.fontFamily.sans],
+        Montserrat: ['"Montserrat"', ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
   plugins: [],
 };
