@@ -1,21 +1,30 @@
 import React from "react";
 import Button from "./Button";
 
-const BookCard = ({ book }) => {
-  const { title, author_name, publisher, publish_year, edition_count } = book;
+const BookCard = ({ book, isAddButton }) => {
+  const { title, author_name, publisher, publish_year, edition_count, key } =
+    book;
 
   const handleAddToBookshelf = () => {
     let personalBookshelf =
       JSON.parse(localStorage.getItem("personal-bookshelf")) || [];
 
-    personalBookshelf.push(book);
-
-    localStorage.setItem(
-      "personal-bookshelf",
-      JSON.stringify(personalBookshelf),
+    const isDuplicateBook = personalBookshelf.some(
+      (storedBook) => storedBook?.key === key,
     );
-    console.log(personalBookshelf);
+
+    if (!isDuplicateBook) {
+      personalBookshelf.push(book);
+      localStorage.setItem(
+        "personal-bookshelf",
+        JSON.stringify(personalBookshelf),
+      );
+      console.log(personalBookshelf);
+    } else {
+      console.log("book is alreay added to your Personal Bookshelf");
+    }
   };
+
   return (
     <div className="relative m-3 flex min-h-52 w-72 flex-col items-start justify-center rounded-lg bg-[#AEF78E] px-3 py-4 pb-7 font-bold text-gray-800 shadow-lg transition-all duration-300 hover:scale-105">
       <h2>
@@ -44,10 +53,12 @@ const BookCard = ({ book }) => {
           {edition_count || "N/A"}
         </span>
       </h2>
-      <Button
-        btnText={"Add to Bookshelf"}
-        handleBtnClick={handleAddToBookshelf}
-      />
+      {isAddButton && (
+        <Button
+          btnText={"Add to Bookshelf"}
+          handleBtnClick={handleAddToBookshelf}
+        />
+      )}
     </div>
   );
 };

@@ -16,7 +16,9 @@ const MyBookshelf = () => {
 
       <div className="mt-4 flex min-h-screen flex-wrap items-start justify-center gap-2">
         {myBookshelf?.length > 0 ? (
-          myBookshelf.map((book) => <BookCard key={book?.key} book={book} />)
+          myBookshelf.map((book) => (
+            <BookCard isAddButton={false} key={book?.key} book={book} />
+          ))
         ) : (
           <BookWarning warnText={"No books in Personal Bookshelf..."} />
         )}

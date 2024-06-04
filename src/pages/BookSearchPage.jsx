@@ -26,7 +26,9 @@ const BookSearchPage = () => {
         ) : (
           <>
             {books.length > 0 ? (
-              books.map((book) => <BookCard key={book?.key} book={book} />)
+              books.map((book) => (
+                <BookCard isAddButton={true} key={book?.key} book={book} />
+              ))
             ) : debouncedQuery && !isLoading ? (
               <BookWarning warnText={"No books found"} />
             ) : null}
