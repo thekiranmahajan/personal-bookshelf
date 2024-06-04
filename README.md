@@ -4,6 +4,17 @@
 
 This is a React application built with a focus on simplicity and ease of use, allowing you to manage your favorite books in a virtual bookshelf.
 
+
+ **Preview:**
+
+https://github.com/thekiranmahajan/personal-bookshelf/assets/91893931/04a19a9a-8c0e-4373-b1cc-5c4b4c2c2ceb
+
+
+**Live Deployed Link:** 
+
+https://personal-bookshelf-ray.vercel.app/
+
+
 **Built with:**
 
 - React & CRA: Streamlined development experience for building modern web apps.
