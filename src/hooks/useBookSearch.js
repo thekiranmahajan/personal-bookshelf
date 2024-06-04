@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
 const useBookSearch = (query) => {
-  const [books, setBooks] = useState(null);
+  const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!query) {
-      setBooks(null);
+      setBooks([]);
       setIsLoading(false);
       return;
     }
@@ -24,7 +24,7 @@ const useBookSearch = (query) => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setBooks(data?.docs);
+        setBooks(data?.docs || []);
       } catch (err) {
         setError(err.message);
       } finally {

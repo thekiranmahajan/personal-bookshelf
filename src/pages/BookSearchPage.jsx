@@ -7,7 +7,7 @@ import warning from "../images/warning.svg";
 
 const BookSearchPage = () => {
   const [query, setQuery] = useState("");
-  const debouncedQuery = useDebounce(query, 500);
+  const debouncedQuery = useDebounce(query, 700);
   const { books, isLoading, error } = useBookSearch(debouncedQuery);
 
   return (
@@ -15,7 +15,7 @@ const BookSearchPage = () => {
       <h1 className="p-3 text-xl font-bold">Search Book by its Name:</h1>
       <BookSearchInput query={query} setQuery={setQuery} />
 
-      <div className="mt-4 flex min-h-screen flex-wrap items-center justify-center gap-2">
+      <div className="mt-4 flex min-h-screen flex-wrap items-start justify-center gap-2">
         {error && (
           <h1>
             Something went wrong while fetching Openlibrary API 😵 Please try
@@ -26,14 +26,14 @@ const BookSearchPage = () => {
           <BookCardShimmer />
         ) : (
           <>
-            {books && books.length > 0 ? (
+            {books.length > 0 ? (
               books.map((book) => <BookCard key={book?.key} book={book} />)
-            ) : (
-              <div>
+            ) : debouncedQuery && !isLoading ? (
+              <div className="mt-10 flex flex-col items-center">
                 <img src={warning} alt="warning" />
                 <h2 className="text-xl font-bold">No Books found</h2>
               </div>
-            )}
+            ) : null}
           </>
         )}
       </div>
