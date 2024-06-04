@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import useBookSearch from "../hooks/useBookSearch";
-import { BookCard, BookSearchInput } from "../components";
+import { BookCard, BookSearchInput, BookWarning } from "../components";
 import useDebounce from "../hooks/useDebounce";
 import BookCardShimmer from "../shimmers/BookCardShimmer";
-import warning from "../images/warning.svg";
 
 const BookSearchPage = () => {
   const [query, setQuery] = useState("");
@@ -29,10 +28,7 @@ const BookSearchPage = () => {
             {books.length > 0 ? (
               books.map((book) => <BookCard key={book?.key} book={book} />)
             ) : debouncedQuery && !isLoading ? (
-              <div className="mt-10 flex flex-col items-center">
-                <img src={warning} alt="warning" />
-                <h2 className="text-xl font-bold">No Books found</h2>
-              </div>
+              <BookWarning warnText={"No books found"} />
             ) : null}
           </>
         )}
