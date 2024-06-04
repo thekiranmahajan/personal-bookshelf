@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 
 const useBookSearch = (query) => {
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [books, setBooks] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!query) {
-      setBooks([]);
+      setBooks(null);
+      setIsLoading(false);
       return;
     }
 
     const fetchBooks = async () => {
-      setLoading(true);
+      setIsLoading(true);
       setError(null);
 
       try {
@@ -27,14 +28,14 @@ const useBookSearch = (query) => {
       } catch (err) {
         setError(err.message);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
     fetchBooks();
   }, [query]);
 
-  return { books, loading, error };
+  return { books, isLoading, error };
 };
 
 export default useBookSearch;
