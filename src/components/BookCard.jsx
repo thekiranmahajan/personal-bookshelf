@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import { toast } from "react-toastify";
 
 const BookCard = ({ book, isAddButton }) => {
   const { title, author_name, publisher, publish_year, edition_count, key } =
@@ -19,8 +20,11 @@ const BookCard = ({ book, isAddButton }) => {
         "personal-bookshelf",
         JSON.stringify(personalBookshelf),
       );
+      toast.success("Book added successfully!📔");
       console.log(personalBookshelf);
     } else {
+      toast.error("Book is already added 😵");
+
       console.log("book is alreay added to your Personal Bookshelf");
     }
   };

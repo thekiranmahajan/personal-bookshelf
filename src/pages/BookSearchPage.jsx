@@ -15,7 +15,7 @@ const BookSearchPage = () => {
       <BookSearchInput query={query} setQuery={setQuery} />
 
       <div className="mt-4 flex min-h-screen flex-wrap items-start justify-center gap-2">
-        {error && (
+        {error && !books && (
           <h1>
             Something went wrong while fetching Openlibrary API 😵 Please try
             again later...
@@ -25,11 +25,11 @@ const BookSearchPage = () => {
           <BookCardShimmer />
         ) : (
           <>
-            {books.length > 0 ? (
+            {books?.length > 0 ? (
               books.map((book) => (
                 <BookCard isAddButton={true} key={book?.key} book={book} />
               ))
-            ) : debouncedQuery && !isLoading ? (
+            ) : debouncedQuery && !isLoading && !error ? (
               <BookWarning warnText={"No books found"} />
             ) : null}
           </>

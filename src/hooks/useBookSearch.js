@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const useBookSearch = (query) => {
   const [books, setBooks] = useState([]);
@@ -14,6 +15,7 @@ const useBookSearch = (query) => {
 
     const fetchBooks = async () => {
       setIsLoading(true);
+      setBooks(null);
       setError(null);
 
       try {
@@ -26,6 +28,7 @@ const useBookSearch = (query) => {
         const data = await response.json();
         setBooks(data?.docs || []);
       } catch (err) {
+        toast.error("Failed to load Books 😵");
         setError(err.message);
       } finally {
         setIsLoading(false);
