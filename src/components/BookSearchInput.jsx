@@ -10,7 +10,7 @@ const BookSearchInput = ({ query, setQuery }) => {
       onChange={handleChange}
       value={query}
       placeholder="e.g. Rich Dad Poor Dad"
-      className="w-full rounded-lg border-2 bg-transparent p-2 outline-none placeholder:text-sm"
+      className="w-full max-w-96 rounded-lg border-2 bg-transparent p-2 outline-none placeholder:text-sm"
       type="text"
     />
   );

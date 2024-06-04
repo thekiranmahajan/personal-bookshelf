@@ -59,6 +59,7 @@ const BookCard = ({ book, isAddButton }) => {
       </h2>
       {isAddButton && (
         <Button
+          styles="absolute -bottom-4 left-1/2 -translate-x-1/2 transform mt-2"
           btnText={"Add to Bookshelf"}
           handleBtnClick={handleAddToBookshelf}
         />
